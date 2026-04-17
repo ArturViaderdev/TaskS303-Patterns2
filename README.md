@@ -123,6 +123,7 @@ Menu halfMenu = new MenuBuilder()
 ```
 
 ## Answer
+
 The dessert/coffee exclusivity is enforced at compile time using progressive interfaces. After selecting dessert, the returned type no longer exposes the coffee option, and vice versa. Therefore, invalid combinations cannot even be written, so no runtime exception is needed for this rule.
 
 ## Level 2
