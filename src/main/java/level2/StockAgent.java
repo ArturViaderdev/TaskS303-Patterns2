@@ -7,37 +7,32 @@ import java.util.Observer;
 
 public class StockAgent extends Observable {
     private double value;
-    private List<Observer> observers;
     public StockAgent()
     {
-        observers = new ArrayList<>();
+
     }
 
     public void addObserver(StockBrokerAgency observer)
     {
-        observers.add(observer);
+        super.addObserver(observer);
     }
 
     public void removeObserver(StockBrokerAgency observer)
     {
-        observers.remove(observer);
+        super.deleteObserver(observer);
     }
 
     public void stockMarketUp(double amount)
     {
         value+=amount;
-        for(Observer observer:observers)
-        {
-            observer.update(this,new StockMarketVariation(amount,true));
-        }
+        setChanged();
+        notifyObservers(new StockMarketVariation(amount,true));
     }
 
     public void stockMarketDown(double amount)
     {
         value-=amount;
-        for(Observer observer:observers)
-        {
-            observer.update(this,new StockMarketVariation(amount,false));
-        }
+        setChanged();
+        notifyObservers(new StockMarketVariation(amount,false));
     }
 }
