@@ -16,8 +16,15 @@ public class StarterBuilderStep implements StarterStep {
 
     @Override
     public MainStep withMainCourse(String mainCourse) {
-        state.setStarter(new Dish(starter,vegan,glutenFree));
-        return new MainBuilderStep(mainCourse,state);
+        if(mainCourse.isEmpty())
+        {
+            throw new EmptyFieldException();
+        }
+        else
+        {
+            state.setStarter(new Dish(starter,vegan,glutenFree));
+            return new MainBuilderStep(mainCourse,state);
+        }
     }
 
     @Override

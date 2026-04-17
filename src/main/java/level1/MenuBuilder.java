@@ -1,10 +1,6 @@
 package level1;
 
 public class MenuBuilder implements StartStep {
-    private String entrant;
-    private String mainCourse;
-    private String dessert;
-    private String drink;
     private MenuState state;
 
     public MenuBuilder()
@@ -13,13 +9,26 @@ public class MenuBuilder implements StartStep {
     }
 
     @Override
-    public StarterStep withEntrant(String entrant) {
-
-        return new StarterBuilderStep(entrant,state);
+    public StarterStep withEntrant(String starter) {
+        if(starter.isEmpty())
+        {
+            throw new EmptyFieldException();
+        }
+        else
+        {
+            return new StarterBuilderStep(starter,state);
+        }
     }
 
     @Override
     public MainStep withMainCourse(String mainCourse) {
-        return new MainBuilderStep(mainCourse,state);
+        if(mainCourse.isEmpty())
+        {
+            throw new EmptyFieldException();
+        }
+        else
+        {
+            return new MainBuilderStep(mainCourse,state);
+        }
     }
 }

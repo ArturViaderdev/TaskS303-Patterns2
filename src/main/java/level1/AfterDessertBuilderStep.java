@@ -11,8 +11,15 @@ public class AfterDessertBuilderStep implements AfterDessertStep{
 
     @Override
     public BuildStep withDrink(String drink) {
-        state.setDessert(dessert);
-        return new FinalBuilderStep(drink,state);
+        if(drink.isEmpty())
+        {
+            throw new EmptyFieldException();
+        }
+        else
+        {
+            state.setDessert(dessert);
+            return new FinalBuilderStep(drink,state);
+        }
     }
 
     @Override

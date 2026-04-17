@@ -7,7 +7,6 @@ public class MainBuilderStep implements MainStep{
     private boolean glutenFree;
     private String supplement;
 
-
     public MainBuilderStep(String mainCourse, MenuState state)
     {
         this.mainCourse = mainCourse;
@@ -29,8 +28,15 @@ public class MainBuilderStep implements MainStep{
 
     @Override
     public MainStep withSuplement(String supplement) {
-        this.supplement = supplement;
-        return this;
+        if(supplement.isEmpty())
+        {
+            throw new EmptyFieldException();
+        }
+        else
+        {
+            this.supplement = supplement;
+            return this;
+        }
     }
 
     private void updateState()
@@ -40,20 +46,41 @@ public class MainBuilderStep implements MainStep{
 
     @Override
     public AfterDessertStep withDessert(String dessert) {
-        updateState();
-        return new AfterDessertBuilderStep(dessert, state);
+        if(dessert.isEmpty())
+        {
+            throw new EmptyFieldException();
+        }
+        else
+        {
+            updateState();
+            return new AfterDessertBuilderStep(dessert, state);
+        }
     }
 
     @Override
     public AfterCoffeStep withCoffee(String coffe) {
-        updateState();
-        return new AfterCoffeBuilderStep(coffe,state);
+        if(coffe.isEmpty())
+        {
+            throw new EmptyFieldException();
+        }
+        else
+        {
+            updateState();
+            return new AfterCoffeBuilderStep(coffe,state);
+        }
     }
 
     @Override
     public BuildStep withDrink(String drink) {
-        updateState();
-        return new FinalBuilderStep(drink,state);
+        if(drink.isEmpty())
+        {
+            throw new EmptyFieldException();
+        }
+        else
+        {
+            updateState();
+            return new FinalBuilderStep(drink,state);
+        }
     }
 
     @Override

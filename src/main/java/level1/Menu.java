@@ -35,8 +35,42 @@ public class Menu {
     }
 
     @Override
-    public String toString() {
-        return "Menu{" +
+    public String toString()
+    {
+        String menu = "Menú:\n";
+        if (starter != null)
+        {
+            menu = menu + " - Entrant: " + starter;
+            if (starterIsVegan) {
+                menu = menu + " (Vegan)";
+            }
+            if (starterIsGlutenFree) {
+                menu = menu + " (Gluten Free)";
+            }
+            menu = menu + "\n";
+        }
+        menu = menu + " - Plat Principal: " + mainCourse;
+        if (mainCourseIsVegan) {
+            menu = menu + " (Vegan";
+        }
+        if (mainCourseIsGlutenFree) {
+            menu = menu + " (Gluten Free)";
+        }
+        if (supplement != null) {
+            menu = menu + ", Suplement: " + supplement;
+        }
+        menu = menu + "\n";
+        if (dessert != null) {
+            menu = menu + " - Postres: " + dessert + "\n";
+        }
+        if (coffe != null) {
+            menu = menu + " - Café: " + coffe + "\n";
+        }
+        if (drink != null) {
+            menu = menu + " - Beguda: " + drink;
+        }
+        return menu;
+        /*return "Menu{" +
                 "starter='" + starter + '\'' +
                 ", starterIsVegan=" + starterIsVegan +
                 ", starterIsGlutenFree=" + starterIsGlutenFree +
@@ -47,6 +81,7 @@ public class Menu {
                 ", dessert='" + dessert + '\'' +
                 ", coffe='" + coffe + '\'' +
                 ", drink='" + drink + '\'' +
-                '}';
+                '}';*/
+
     }
 }
